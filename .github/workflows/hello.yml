@@ -1,19 +1,22 @@
-name: My First Workflow
+name: Python Dice Roller
 
-# THE TRIGGER: When should this run?
-on: [push]  # This means "Run every time I push (save) code to this repo"
+on: [push]
 
-# THE WORK: What should happen?
 jobs:
-  say-hello-job:
-    # The computer to run on (GitHub provides this for free)
+  roll-the-dice:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: A simple command
-      - name: Say Hello
-        run: echo "Hello! I am your new robot."
+      # Step 1: Check out the code
+      # This downloads your repository content (including dice.py) to the runner
+      - uses: actions/checkout@v4
 
-      # Step 2: Another command to show it can do math
-      - name: Do some quick math
-        run: expr 5 + 5
+      # Step 2: Install Python
+      # This installs Python 3.9 on the runner so it can understand your script
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      # Step 3: Run the script
+      - name: Run the dice script
+        run: python dice.py
