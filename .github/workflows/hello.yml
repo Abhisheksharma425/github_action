@@ -1,0 +1,19 @@
+name: My First Workflow
+
+# THE TRIGGER: When should this run?
+on: [push]  # This means "Run every time I push (save) code to this repo"
+
+# THE WORK: What should happen?
+jobs:
+  say-hello-job:
+    # The computer to run on (GitHub provides this for free)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: A simple command
+      - name: Say Hello
+        run: echo "Hello! I am your new robot."
+
+      # Step 2: Another command to show it can do math
+      - name: Do some quick math
+        run: expr 5 + 5
